@@ -96,7 +96,7 @@ export class DashboardComponent implements OnInit {
          pointHoverBorderColor: this.chartColor,
        }
      ];
-    this.lineBigDashboardChartLabels = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+    this.lineBigDashboardChartLabels = ["ENE", "FEB", "MAR", "ABR", "MAY", "JUN", "JUL", "AGO", "SEP", "OCT", "NOV", "DIC"];
     this.lineBigDashboardChartOptions = {
 
           layout: {
@@ -271,7 +271,7 @@ export class DashboardComponent implements OnInit {
 
     this.lineChartData = [
         {
-          label: "Active Users",
+          label: "Desgaste Ductos",
           pointBorderWidth: 2,
           pointHoverRadius: 4,
           pointHoverBorderWidth: 1,
@@ -289,7 +289,7 @@ export class DashboardComponent implements OnInit {
          backgroundColor: this.gradientFill
        }
      ];
-    this.lineChartLabels = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    this.lineChartLabels = ["ENE", "FEB", "MAR", "ABR", "MAY", "JUN", "JUL", "AGO", "SEP", "OCT", "NOV", "DIC"];
     this.lineChartOptions = this.gradientChartOptionsConfiguration;
 
     this.lineChartType = 'line';
@@ -307,14 +307,14 @@ export class DashboardComponent implements OnInit {
 
     this.lineChartWithNumbersAndGridData = [
         {
-          label: "Email Stats",
+          label: "Ductos medidos",
            pointBorderWidth: 2,
            pointHoverRadius: 4,
            pointHoverBorderWidth: 1,
            pointRadius: 4,
            fill: true,
            borderWidth: 2,
-          data: [40, 500, 650, 700, 1200, 1250, 1300, 1900]
+          data: [40, 500, 650, 700, 1200, 1250, 1300, 1900,0,0,0,0]
         }
       ];
       this.lineChartWithNumbersAndGridColors = [
@@ -325,7 +325,7 @@ export class DashboardComponent implements OnInit {
          backgroundColor: this.gradientFill
        }
      ];
-    this.lineChartWithNumbersAndGridLabels = ["12pm,", "3pm", "6pm", "9pm", "12am", "3am", "6am", "9am"];
+    this.lineChartWithNumbersAndGridLabels = ["ENE,", "FEB", "MAR", "ABR", "MAY", "JUN", "JUL", "AGO", "SEP", "OCT", "NOV", "DIC"];
     this.lineChartWithNumbersAndGridOptions = this.gradientChartOptionsConfigurationWithNumbersAndGrid;
 
     this.lineChartWithNumbersAndGridType = 'line';
@@ -343,14 +343,14 @@ export class DashboardComponent implements OnInit {
 
     this.lineChartGradientsNumbersData = [
         {
-          label: "Active Countries",
+          label: "Ducto",
           pointBorderWidth: 2,
           pointHoverRadius: 4,
           pointHoverBorderWidth: 1,
           pointRadius: 4,
           fill: true,
           borderWidth: 1,
-          data: [80, 99, 86, 96, 123, 85, 100, 75, 88, 90, 123, 155]
+          data: [250, 234, 344, 280]
         }
       ];
     this.lineChartGradientsNumbersColors = [
@@ -361,7 +361,7 @@ export class DashboardComponent implements OnInit {
        pointBackgroundColor: "#2CA8FF",
      }
    ];
-    this.lineChartGradientsNumbersLabels = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    this.lineChartGradientsNumbersLabels = ["Linea Muro", "Linea ByPass", "Linea Principal", "Linea Lateral"];
     this.lineChartGradientsNumbersOptions = {
         maintainAspectRatio: false,
         legend: {

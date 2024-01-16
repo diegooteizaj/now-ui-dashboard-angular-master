@@ -22,7 +22,7 @@ export class DuctosComponent implements OnInit {
   }
 
   currentPage = 1;
-  itemsPerPage = 10; // Cambia esto según tus necesidades
+  itemsPerPage = 15; // Cambia esto según tus necesidades
 
   // Método para cambiar de página
   pageChanged(event: any): void {
