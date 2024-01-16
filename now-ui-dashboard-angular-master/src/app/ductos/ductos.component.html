@@ -96,7 +96,22 @@
             </tr>
           </tbody>
         </table>
-        <pagination-controls (pageChange)="pageChanged($event)" id="custom-pagination"></pagination-controls>
+        <!-- <pagination-controls (pageChange)="pageChanged($event)" id="custom-pagination"></pagination-controls> -->
+        <div class="row">
+          <div class="col-md-6">
+              <!-- Botón para imprimir PDF -->
+              <button class="btn btn-primary" (click)="generarPDFsMasivos()">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-printer" viewBox="0 0 16 16">
+                      <path d="M0 1V4H16V1H0zM15 5H1v8h14V5zM1 13V15h14v-2H1zm5-7H4v-1h2v1zM3 9h2v1H3V9z"/>
+                  </svg>
+                  QR masivo
+              </button>
+          </div>
+          <div class="col-md-6">
+              <!-- Paginador ... -->
+              <pagination-controls (pageChange)="pageChanged($event)" id="custom-pagination"></pagination-controls>
+          </div>
+      </div>
       </div>
 </div>
 

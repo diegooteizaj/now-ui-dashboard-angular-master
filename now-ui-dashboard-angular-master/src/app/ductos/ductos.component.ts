@@ -21,6 +21,7 @@ export class DuctosComponent implements OnInit {
   ducto:any;
   ductoUrl:any;
   id_descarga:any;
+  listaDeIds:any=[];
   constructor(
     private ductoService: ApiDuctosService
   ) { }
@@ -28,7 +29,7 @@ export class DuctosComponent implements OnInit {
   ngOnInit(): void {
     this.ductoService.getAllDuctos().subscribe((ducto: any[]) => {
       console.log('lista de ducto', ducto);
-      this.listaDuctos = ducto;
+      this.listaDuctos = ducto; 
     });
   }
 
@@ -42,6 +43,8 @@ export class DuctosComponent implements OnInit {
   }
 
   abrirModalQr(id:any){
+    console.log('this.listaDeIds',this.listaDuctos);
+   
     if(id !== null){
       this.modalQr = true;
       this.ductoService.getDuctoById(id).subscribe(
@@ -53,7 +56,6 @@ export class DuctosComponent implements OnInit {
           console.error('Error al obtener el ducto por ID:', error);
         }
       );
-      console.log('this.ducto$',this.ducto);
     }
     this.ductoUrl = 'http://localhost:8085/ductos'+`/getDuctoById/${id}`;
     this.id_descarga = id;
@@ -93,12 +95,59 @@ export class DuctosComponent implements OnInit {
     });
   }
 
+  imprimirPDF(): void {
+    // Supongamos que tienes un id específico, por ejemplo, 1
+    const ductoId = 1;
+
+    // Llamada a la función para generar PDF con QR
+    this.downloadPDF(ductoId);
+  }
 
 
-  // formatearFecha(fechaString: string): string {
-  //   return Utils.transformarFecha2(fechaString);
+  generarPDFsMasivos(): void {
+    const doc = new jsPDF();
 
-  // }
+    this.listaDuctos.forEach(element => {
+      this.listaDeIds.push(element.id_ducto);
+    });
 
+    console.log(' this.listaDeIds', this.listaDeIds);
+
+    this.listaDeIds.forEach((id, index) => {
+      // Añadir nueva página al PDF (excepto para la primera página)
+      if (index > 0) {
+        doc.addPage();
+      }
+
+      // Añadir título al PDF
+      const title = `Ducto ${id}`;
+      doc.setFontSize(16);
+      doc.text(title, doc.internal.pageSize.getWidth() / 2, 10, { align: 'center' });
+
+      // Generar el código QR
+      QRCode.toDataURL(this.ductoUrl + `/${id}`, { errorCorrectionLevel: 'H' }, (err, url) => {
+        if (err) {
+          console.error('Error al generar el código QR:', err);
+          return;
+        }
+
+        // Obtener dimensiones de la imagen QR
+        const qrWidth = 100;
+        const qrHeight = 100;
+
+        // Calcular coordenadas para centrar la imagen QR
+        const x = (doc.internal.pageSize.getWidth() - qrWidth) / 2;
+        const y = 30; // Puedes ajustar según tus necesidades
+
+        // Insertar el código QR en la página del documento PDF
+        doc.addImage(url, 'JPEG', x, y, qrWidth, qrHeight);
+
+        // Si es la última iteración, guardar el documento PDF
+        if (index === this.listaDeIds.length - 1) {
+          doc.save('Qr_Ductos_Masivos.pdf');
+        }
+      });
+    });
+  }
   
 }
