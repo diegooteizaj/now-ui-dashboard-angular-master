@@ -16,6 +16,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { UpgradeComponent } from '../../upgrade/upgrade.component';
 import { DuctosComponent } from '../../ductos/ductos.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     ChartsModule,
     NgbModule,
     ToastrModule.forRoot(),
-    NgxPaginationModule
+    NgxPaginationModule,
+    NgxQRCodeModule
   ],
   declarations: [
     DashboardComponent,

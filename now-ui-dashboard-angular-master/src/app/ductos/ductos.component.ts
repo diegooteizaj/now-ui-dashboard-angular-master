@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiDuctosService } from '../service/api-ductos.service';
 import { Utils } from '../utils';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-ductos',
@@ -9,7 +10,13 @@ import { Utils } from '../utils';
 })
 export class DuctosComponent implements OnInit {
 
+  title = 'app';
+  elementType = 'url';
+  value = 'Techiediaries';
   listaDuctos: any=[];
+  modalQr:boolean=false;
+  ducto:any;
+  ductoUrl:any;
   constructor(
     private ductoService: ApiDuctosService
   ) { }
@@ -28,6 +35,27 @@ export class DuctosComponent implements OnInit {
   pageChanged(event: any): void {
     console.log('$event',event);
     this.currentPage = event;
+  }
+
+  abrirModalQr(id:any){
+    if(id !== null){
+      this.modalQr = true;
+      this.ductoService.getDuctoById(id).subscribe(
+        (data) => {
+          console.log('data',data)
+          this.ducto = data;
+        },
+        (error) => {
+          console.error('Error al obtener el ducto por ID:', error);
+        }
+      );
+      console.log('this.ducto$',this.ducto);
+    }
+    this.ductoUrl = 'http://localhost:8085/ductos'+`/getDuctoById/${id}`;
+  }
+
+  closeModalQR(){
+    this.modalQr = false;
   }
 
   // formatearFecha(fechaString: string): string {
