@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import * as QRCode from 'qrcode';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-ductos',
@@ -22,6 +23,7 @@ export class DuctosComponent implements OnInit {
   ductoUrl:any;
   id_descarga:any;
   listaDeIds:any=[];
+  fechaFormateada:any;
   constructor(
     private ductoService: ApiDuctosService
   ) { }
@@ -141,5 +143,14 @@ export class DuctosComponent implements OnInit {
       });
     });
   }
+
+  formatearFecha(fecha:any) {
+    // Parsear la fecha original usando moment.js
+    const fechaMoment = moment(fecha);
+
+    // Formatear la fecha según el formato DD/MM/YYYY
+    return this.fechaFormateada = fechaMoment.format('DD/MM/YYYY');
+  }
+
   
 }
