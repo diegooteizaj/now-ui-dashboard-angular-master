@@ -22,11 +22,12 @@ export class DuctosComponent implements OnInit {
   }
 
   currentPage = 1;
-  itemsPerPage = 5; // Cambia esto según tus necesidades
+  itemsPerPage = 10; // Cambia esto según tus necesidades
 
   // Método para cambiar de página
   pageChanged(event: any): void {
-    this.currentPage = event.page;
+    console.log('$event',event);
+    this.currentPage = event;
   }
 
   // formatearFecha(fechaString: string): string {
