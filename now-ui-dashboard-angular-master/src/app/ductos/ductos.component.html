@@ -43,7 +43,7 @@
                  {{x.id_fabricacion}}
                 </td>
                 <td>
-                 {{x.id_tipo_material}}
+                 {{obtenerTipoMaterialPorId(x.id_tipo_material)}}
                 </td>
                 <td>
                  {{formatearFecha(x.fecha_montaje)}}
@@ -52,7 +52,7 @@
                  {{x.girado == 1 ? 'SI':'NO'}}
                 </td>
                 <td>
-                 {{x.id_linea }}
+                 {{obtenerLineasPorId(x.id_linea)}}
                 </td>
 
                 <td [width]="200">

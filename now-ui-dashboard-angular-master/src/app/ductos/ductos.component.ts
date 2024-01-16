@@ -6,6 +6,8 @@ import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import * as QRCode from 'qrcode';
 import * as moment from 'moment';
+import { ApiTipoMaterialService } from '../service/api-tipo-material.service';
+import { ApiLineaService } from '../service/api-linea.service';
 
 @Component({
   selector: 'app-ductos',
@@ -24,14 +26,28 @@ export class DuctosComponent implements OnInit {
   id_descarga:any;
   listaDeIds:any=[];
   fechaFormateada:any;
+
+  lineas:any=[];
+  tipoMaterial:any=[];
+
   constructor(
-    private ductoService: ApiDuctosService
+    private ductoService: ApiDuctosService,
+    private tipoMaterialService:ApiTipoMaterialService,
+    private lineaService:ApiLineaService
   ) { }
 
   ngOnInit(): void {
     this.ductoService.getAllDuctos().subscribe((ducto: any[]) => {
       console.log('lista de ducto', ducto);
       this.listaDuctos = ducto; 
+    });
+    this.lineaService.getAllLinea().subscribe((linea: any[])=>{
+      console.log('lista de linea',linea);
+      this.lineas = linea;
+    });
+    this.tipoMaterialService.getAllTipoMaterial().subscribe((tm: any[])=>{
+      console.log('lista de tm',tm);
+      this.tipoMaterial = tm;
     });
   }
 
@@ -152,5 +168,28 @@ export class DuctosComponent implements OnInit {
     return this.fechaFormateada = fechaMoment.format('DD/MM/YYYY');
   }
 
+  obtenerTipoMaterialPorId(id: number) {
+    if (!this.tipoMaterial) {
+      console.error('El array tipoMaterial es undefined.');
+      return ''; // o maneja de otra manera
+    }
+  
+    const tipoMaterialEncontrado = this.tipoMaterial.find((tipoMaterial: any) => tipoMaterial.id_tipo_material === id);
+  
+    if (!tipoMaterialEncontrado) {
+      console.error(`No se encontró ningún tipo de material con el ID ${id}.`);
+      return ''; // o maneja de otra manera
+    }
+  
+    return tipoMaterialEncontrado.nombre;
+  }
+
+  obtenerLineasPorId(id:number){
+    //console.log
+    const lineaEncontrada = this.lineas.find((linea:any) => linea.id_linea === id);
+    console.log('lineaEncontrada',lineaEncontrada);
+    return lineaEncontrada.nombre;
+    
+  }
   
 }
