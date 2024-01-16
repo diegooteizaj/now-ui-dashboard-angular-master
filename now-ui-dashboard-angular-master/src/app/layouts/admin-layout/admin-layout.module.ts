@@ -15,6 +15,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrModule } from 'ngx-toastr';
 import { UpgradeComponent } from '../../upgrade/upgrade.component';
 import { DuctosComponent } from '../../ductos/ductos.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+
 
 @NgModule({
   imports: [
@@ -23,7 +25,8 @@ import { DuctosComponent } from '../../ductos/ductos.component';
     FormsModule,
     ChartsModule,
     NgbModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    NgxPaginationModule
   ],
   declarations: [
     DashboardComponent,

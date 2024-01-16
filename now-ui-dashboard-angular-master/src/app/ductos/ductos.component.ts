@@ -21,6 +21,14 @@ export class DuctosComponent implements OnInit {
     });
   }
 
+  currentPage = 1;
+  itemsPerPage = 5; // Cambia esto según tus necesidades
+
+  // Método para cambiar de página
+  pageChanged(event: any): void {
+    this.currentPage = event.page;
+  }
+
   // formatearFecha(fechaString: string): string {
   //   return Utils.transformarFecha2(fechaString);
 

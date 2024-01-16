@@ -31,7 +31,7 @@
              Generar QR
              </th> -->
           </thead>
-          <tbody *ngFor="let x of listaDuctos">
+          <tbody *ngFor="let x of listaDuctos | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage, id: 'custom-pagination' }">
             <tr>
                 <td>
                   {{x.id_ducto}}
@@ -78,5 +78,6 @@
             </tr>
           </tbody>
         </table>
+        <pagination-controls (pageChange)="pageChanged($event)" id="custom-pagination"></pagination-controls>
       </div>
 </div>
