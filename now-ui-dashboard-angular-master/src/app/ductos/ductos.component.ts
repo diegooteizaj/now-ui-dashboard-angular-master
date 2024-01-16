@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ApiDuctosService } from '../service/api-ductos.service';
 import { Utils } from '../utils';
 import { Observable } from 'rxjs';
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-ductos',
@@ -17,6 +19,7 @@ export class DuctosComponent implements OnInit {
   modalQr:boolean=false;
   ducto:any;
   ductoUrl:any;
+  id_descarga:any;
   constructor(
     private ductoService: ApiDuctosService
   ) { }
@@ -52,11 +55,21 @@ export class DuctosComponent implements OnInit {
       console.log('this.ducto$',this.ducto);
     }
     this.ductoUrl = 'http://localhost:8085/ductos'+`/getDuctoById/${id}`;
+    this.id_descarga = id;
   }
 
   closeModalQR(){
     this.modalQr = false;
   }
+
+  public downloadPDF(id:any): void {
+    const doc = new jsPDF();
+
+    doc.text('Hello world!', 10, 10);
+    doc.save(`Qr_Ducto_${id}.pdf`);
+  }
+
+
 
   // formatearFecha(fechaString: string): string {
   //   return Utils.transformarFecha2(fechaString);

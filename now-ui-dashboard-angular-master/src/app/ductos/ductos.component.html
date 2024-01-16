@@ -121,7 +121,7 @@
       </div>
       <div class="modal-footer">
         <!-- Botones para acciones en el modal -->
-        <button class="btn btn-primary" style="margin: 20px;" >Descargar QR</button>
+        <button class="btn btn-primary" style="margin: 20px;" (click)="downloadPDF(this.id_descarga)" >Descargar QR</button>
         <button class="btn btn-danger" style="margin: 20px;" (click)="closeModalQR()" >Cancelar</button>
       </div>
     </div>
