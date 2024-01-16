@@ -95,14 +95,6 @@ export class DuctosComponent implements OnInit {
     });
   }
 
-  imprimirPDF(): void {
-    // Supongamos que tienes un id específico, por ejemplo, 1
-    const ductoId = 1;
-
-    // Llamada a la función para generar PDF con QR
-    this.downloadPDF(ductoId);
-  }
-
 
   generarPDFsMasivos(): void {
     const doc = new jsPDF();
