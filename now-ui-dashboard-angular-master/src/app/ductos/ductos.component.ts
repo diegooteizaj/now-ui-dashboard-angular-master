@@ -63,42 +63,6 @@ export class DuctosComponent implements OnInit {
     this.modalQr = false;
   }
 
-  // public downloadPDF(id:any): void {
-  //   const doc = new jsPDF();
-
-  //   doc.text('Hello world!', 10, 10);
-  //   doc.save(`Qr_Ducto_${id}.pdf`);
-  // }
-
-  // downloadPDF(id: any): void {
-  //   const doc = new jsPDF();
-
-  //   doc.text(`Ducto ${id}`, 70, 10, { align: 'center' });
-  //   // Generar el código QR
-  //   const qrData =  this.ductoUrl; // Reemplaza esto con la URL real de tu aplicación
-  //   QRCode.toDataURL(qrData, { errorCorrectionLevel: 'H' }, function (err, url) {
-  //     if (err) {
-  //       console.error('Error al generar el código QR:', err);
-  //       return;
-  //     }
-
-  //      // Obtener dimensiones de la imagen
-  //      const imgWidth = 100; // ajusta según tus necesidades
-  //      const imgHeight = 100; // ajusta según tus necesidades
- 
-  //      // Calcular coordenadas para centrar la imagen con un margen superior de 30px
-  //      const x = (doc.internal.pageSize.getWidth() - imgWidth) / 2;
-  //      const y = 40; // Margen superior de 30px
- 
-  //      // Insertar el código QR en el documento PDF
-  //      doc.addImage(url, 'JPEG', x, y, imgWidth, imgHeight);
- 
-  //      // Guardar el documento PDF
-  //      doc.save(`Qr_Ducto_${id}.pdf`);
-  //   });
-  // }
-
-
   downloadPDF(id: any): void {
     const doc = new jsPDF();
 
