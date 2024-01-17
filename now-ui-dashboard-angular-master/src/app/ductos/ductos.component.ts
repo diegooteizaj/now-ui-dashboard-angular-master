@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiDuctosService } from '../service/api-ductos.service';
-import { Utils } from '../utils';
-import { Observable } from 'rxjs';
 import jsPDF from 'jspdf';
-import html2canvas from 'html2canvas';
 import * as QRCode from 'qrcode';
 import * as moment from 'moment';
 import { ApiTipoMaterialService } from '../service/api-tipo-material.service';
@@ -29,6 +26,8 @@ export class DuctosComponent implements OnInit {
 
   lineas:any=[];
   tipoMaterial:any=[];
+
+  modalIngreasrDuctos:boolean=false;
 
   constructor(
     private ductoService: ApiDuctosService,
@@ -117,8 +116,18 @@ export class DuctosComponent implements OnInit {
   generarPDFsMasivos(): void {
     const doc = new jsPDF();
 
+    this.listaDeIds=[];
+    let obj = {
+    }
     this.listaDuctos.forEach(element => {
-      this.listaDeIds.push(element.id_ducto);
+
+      obj = {
+        id:element.id_ducto,
+        nombre: this.obtenerLineasPorId(element.id_linea)
+      }
+
+      this.listaDeIds.push(obj);
+      
     });
 
     console.log(' this.listaDeIds', this.listaDeIds);
@@ -129,13 +138,12 @@ export class DuctosComponent implements OnInit {
         doc.addPage();
       }
 
-      // Añadir título al PDF
-      const title = `Ducto ${id}`;
+      const title = `Ducto ${id.id} de ${id.nombre}`;
       doc.setFontSize(16);
       doc.text(title, doc.internal.pageSize.getWidth() / 2, 10, { align: 'center' });
 
       // Generar el código QR
-      QRCode.toDataURL(this.ductoUrl + `/${id}`, { errorCorrectionLevel: 'H' }, (err, url) => {
+      QRCode.toDataURL(this.ductoUrl + `/${id.id}`, { errorCorrectionLevel: 'H' }, (err, url) => {
         if (err) {
           console.error('Error al generar el código QR:', err);
           return;
@@ -190,6 +198,14 @@ export class DuctosComponent implements OnInit {
     console.log('lineaEncontrada',lineaEncontrada);
     return lineaEncontrada.nombre;
     
+  }
+
+  openModalIngresar(){
+    this.modalIngreasrDuctos = true;
+  }
+
+  closeModalIngresar(){
+    this.modalIngreasrDuctos = false;
   }
   
 }
