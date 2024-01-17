@@ -143,7 +143,7 @@ export class DuctosComponent implements OnInit {
       doc.text(title, doc.internal.pageSize.getWidth() / 2, 10, { align: 'center' });
 
       // Generar el código QR
-      QRCode.toDataURL(this.ductoUrl + `/${id.id}`, { errorCorrectionLevel: 'H' }, (err, url) => {
+      QRCode.toDataURL('http://localhost:8085/ductos/getDuctoById' + `/${id.id}`, { errorCorrectionLevel: 'H' }, (err, url) => {
         if (err) {
           console.error('Error al generar el código QR:', err);
           return;
