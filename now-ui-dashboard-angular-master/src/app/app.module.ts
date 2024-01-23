@@ -14,6 +14,7 @@ import { AppComponent } from './app.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 
 import { NgxPaginationModule } from 'ngx-pagination';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   imports: [
@@ -30,6 +31,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
   declarations: [
     AppComponent,
     AdminLayoutComponent,
+    LoginComponent,
 
   ],
   providers: [],
