@@ -113,61 +113,75 @@ export class DuctosComponent implements OnInit {
   }
 
 
-  generarPDFsMasivos(): void {
+  async generarPDFsMasivos(): Promise<void> {
     const doc = new jsPDF();
 
-    this.listaDeIds=[];
-    let obj = {
-    }
-    this.listaDuctos.forEach(element => {
+    this.listaDeIds = [];
+    let obj = {};
 
+    for (const element of this.listaDuctos) {
       obj = {
-        id:element.id_ducto,
-        nombre: this.obtenerLineasPorId(element.id_linea)
-      }
+        id: element.id_ducto,
+        nombre: this.obtenerLineasPorId(element.id_linea),
+      };
 
       this.listaDeIds.push(obj);
-      
-    });
+    }
 
-    console.log(' this.listaDeIds', this.listaDeIds);
+    console.log('this.listaDeIds', this.listaDeIds);
 
-    this.listaDeIds.forEach((id, index) => {
+    for (let index = 0; index < this.listaDeIds.length; index++) {
       // Añadir nueva página al PDF (excepto para la primera página)
       if (index > 0) {
         doc.addPage();
       }
 
-      const title = `Ducto ${id.id} de ${id.nombre}`;
+      const title = `Ducto ${this.listaDeIds[index].id} de ${this.listaDeIds[index].nombre}`;
       doc.setFontSize(16);
       doc.text(title, doc.internal.pageSize.getWidth() / 2, 10, { align: 'center' });
 
+      // Obtener dimensiones de la imagen
+      const imageWidth = 70;
+      const imageHeight = 40;
+
+      // Calcular coordenadas para centrar la imagen
+      const xImage = (doc.internal.pageSize.getWidth() - imageWidth) / 2;
+      const yImage = 30; // Puedes ajustar según tus necesidades
+
+      // Ruta de la imagen
+      const imageUrl = './assets/img/LOGO ULTRA SOUND ok_Mesa de trabajo 1 copia 4.png';
+
+      // Obtener la imagen en base64
+      const imageBase64: string = await this.getImageBase64(imageUrl);
+
+      // Añadir la imagen al documento PDF
+      doc.addImage(imageBase64, 'PNG', xImage, yImage, imageWidth, imageHeight);
+
+      // Obtener dimensiones del código QR
+      const qrWidth = 100;
+      const qrHeight = 100;
+
+      // Calcular coordenadas para centrar el código QR
+      const xQR = (doc.internal.pageSize.getWidth() - qrWidth) / 2;
+      const yQR = yImage + imageHeight + 10; // Espacio entre la imagen y el código QR
+
       // Generar el código QR
-      QRCode.toDataURL('http://localhost:8085/ductos/getDuctoById' + `/${id.id}`, { errorCorrectionLevel: 'H' }, (err, url) => {
+      QRCode.toDataURL('http://localhost:8085/ductos/getDuctoById' + `/${this.listaDeIds[index].id}`, { errorCorrectionLevel: 'H' }, (err, url) => {
         if (err) {
           console.error('Error al generar el código QR:', err);
           return;
         }
 
-        // Obtener dimensiones de la imagen QR
-        const qrWidth = 100;
-        const qrHeight = 100;
-
-        // Calcular coordenadas para centrar la imagen QR
-        const x = (doc.internal.pageSize.getWidth() - qrWidth) / 2;
-        const y = 30; // Puedes ajustar según tus necesidades
-
         // Insertar el código QR en la página del documento PDF
-        doc.addImage(url, 'JPEG', x, y, qrWidth, qrHeight);
+        doc.addImage(url, 'JPEG', xQR, yQR, qrWidth, qrHeight);
 
         // Si es la última iteración, guardar el documento PDF
         if (index === this.listaDeIds.length - 1) {
           doc.save('Qr_Ductos_Masivos.pdf');
         }
       });
-    });
+    }
   }
-
   formatearFecha(fecha:any) {
     // Parsear la fecha original usando moment.js
     const fechaMoment = moment(fecha);
@@ -207,5 +221,17 @@ export class DuctosComponent implements OnInit {
   closeModalIngresar(){
     this.modalIngreasrDuctos = false;
   }
-  
+
+
+  async getImageBase64(url: string): Promise<string> {
+    const response = await fetch(url);
+    const blob = await response.blob();
+    return new Promise<string>((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onloadend = () => resolve(reader.result as string);
+      reader.onerror = reject;
+      reader.readAsDataURL(blob);
+    });
+  }
+
 }
