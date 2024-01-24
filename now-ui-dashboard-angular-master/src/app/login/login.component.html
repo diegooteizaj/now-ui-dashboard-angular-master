@@ -1,1 +1,43 @@
-<p>login works!</p>
+<div *ngIf="!mensajeOk">
+    <div class="container">
+        <div class="container text-center">
+            <!-- Ajusta la ruta de la imagen según tu estructura de carpetas -->
+            <img src="../../assets/img/LOGO ULTRA SOUND ok_Mesa de trabajo 1 copia 4.png" alt="Logo" style="width: 400px; height: 200px; border-radius: 10px; margin-top: 20px;" class="mx-auto my-auto d-block">
+          </div>
+        
+          <div class="d-flex align-items-center justify-content-center padding-card" >
+            <div class="card" style="width: 18rem;">
+              <div class="card-body">
+                <h5 class="card-title">Ingrese Sus Credenciales</h5>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">@</span>
+                  </div>
+                  <input 
+                    type="text" 
+                    class="form-control" 
+                    placeholder="Username" 
+                    aria-label="Username" 
+                    aria-describedby="basic-addon1"
+                    [(ngModel)]="username"
+                  >
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Password</label>
+                  <input 
+                    type="password" 
+                    class="form-control" 
+                    id="exampleInputPassword1" 
+                    placeholder="Password" 
+                    [(ngModel)]="password" 
+                    (input)="updateButtonState()"
+                  >
+                </div>
+                <button type="button" class="btn btn-primary" style="margin-top: 15px;" [disabled]="isButtonDisabled" (click)="realizarLogin()">Acceder</button>
+              </div>
+            </div>
+          </div>
+          
+          
+    </div>
+</div>
