@@ -16,6 +16,7 @@ export const ROUTES: RouteInfo[] = [
     // { path: '/table-list', title: 'Table List',  icon:'design_bullet-list-67', class: '' },
     // { path: '/typography', title: 'Typography',  icon:'text_caps-small', class: '' },
     { path: '/admin/ductos', title: 'Ductos',  icon:'objects_spaceship', class: '' },
+    { path: '/admin/dashboard-test', title: 'Dashboard test',  icon:'objects_spaceship', class: '' },
     // { path: '/upgrade', title: 'Upgrade to PRO',  icon:'objects_spaceship', class: 'active active-pro' }
 
 ];

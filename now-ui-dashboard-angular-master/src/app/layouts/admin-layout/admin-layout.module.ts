@@ -17,6 +17,7 @@ import { UpgradeComponent } from '../../upgrade/upgrade.component';
 import { DuctosComponent } from '../../ductos/ductos.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
+import { DashboardTestComponent } from '../../dashboard-test/dashboard-test.component'
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
     IconsComponent,
     MapsComponent,
     NotificationsComponent,
-    DuctosComponent
+    DuctosComponent,
+    DashboardTestComponent
   ]
 })
 
