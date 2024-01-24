@@ -82,12 +82,29 @@ export class DuctosComponent implements OnInit {
     this.modalQr = false;
   }
 
-  downloadPDF(id: any): void {
+  async downloadPDF(id: any): Promise<void>  {
     const doc = new jsPDF();
 
     // Agregar título
     const title = `Ducto ${id}`;
     doc.text(title, doc.internal.pageSize.getWidth() / 2, 10, { align: 'center' });
+
+          // Obtener dimensiones de la imagen
+          const imageWidth = 70;
+          const imageHeight = 40;
+    
+          // Calcular coordenadas para centrar la imagen
+          const xImage = (doc.internal.pageSize.getWidth() - imageWidth) / 2;
+          const yImage = 30; // Puedes ajustar según tus necesidades
+    
+          // Ruta de la imagen
+          const imageUrl = './assets/img/LOGO ULTRA SOUND ok_Mesa de trabajo 1 copia 4.png';
+    
+          // Obtener la imagen en base64
+          const imageBase64: string = await this.getImageBase64(imageUrl);
+    
+          // Añadir la imagen al documento PDF
+          doc.addImage(imageBase64, 'PNG', xImage, yImage, imageWidth, imageHeight);
 
     // Generar el código QR
     QRCode.toDataURL(this.ductoUrl + `/${id}`, { errorCorrectionLevel: 'H' }, function (err, url) {

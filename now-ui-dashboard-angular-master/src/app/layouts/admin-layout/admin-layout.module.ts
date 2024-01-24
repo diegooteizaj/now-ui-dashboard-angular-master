@@ -18,6 +18,11 @@ import { DuctosComponent } from '../../ductos/ductos.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
 import { DashboardTestComponent } from '../../dashboard-test/dashboard-test.component'
+import { MatSelectModule } from '@angular/material/select';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatInputModule } from '@angular/material/input';
+import { MatNativeDateModule } from '@angular/material/core';
+
 
 
 @NgModule({
@@ -29,7 +34,11 @@ import { DashboardTestComponent } from '../../dashboard-test/dashboard-test.comp
     NgbModule,
     ToastrModule.forRoot(),
     NgxPaginationModule,
-    NgxQRCodeModule
+    NgxQRCodeModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatInputModule,
+    MatNativeDateModule
   ],
   declarations: [
     DashboardComponent,

@@ -18,10 +18,14 @@
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   }
-  
   .modal-content {
-    padding: 20px;
+    z-index: 1000; /* Ajusta el valor según sea necesario */
   }
+  
+  .mat-datepicker-panel {
+    z-index: 1100; /* Ajusta el valor según sea necesario, debe ser mayor que el z-index del modal */
+  }
+  
   
   /* Estilos adicionales para el botón Cerrar (X) si lo necesitas */
   .close {
@@ -41,5 +45,18 @@
   /* Ajusta los estilos de los botones según tus necesidades */
   .btn {
     margin: 10px;
+  }
+  
+
+  .mat-datepicker-panel {
+    position: absolute; /* O prueba con 'fixed' o 'relative' según sea necesario */
+    top: 50%; /* O ajusta la posición superior según sea necesario */
+    left: 50%; /* O ajusta la posición izquierda según sea necesario */
+    transform: translate(-50%, -50%); /* Centra el calendario */
+  }
+
+  
+  .mat-datepicker-panel {
+    width: auto; /* O ajusta el ancho según sea necesario */
   }
   
