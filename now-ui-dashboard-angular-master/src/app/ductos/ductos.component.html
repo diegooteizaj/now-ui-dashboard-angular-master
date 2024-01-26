@@ -240,66 +240,64 @@
 
 
 
+<!-- modal-edicion-ducto.component.html -->
+<!-- modal-edicion-ducto.component.html -->
 <div *ngIf="modalEditarDuctos" class="overlay">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">Editar Ductos</h5>
-        <button type="button" class="close"  (click)="closeModalEditar()">
+        <button type="button" class="close" (click)="closeModalEditar()">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
+      <div *ngFor="let y of ductoEditar" class="modal-body">
         <div class="row">
           <div class="col-6">
             <label for="">ID Ducto : </label>
-            <input type="text" class="form-control" id="IdDucto" value="">
+            <input type="text" class="form-control" id="IdDucto" [(ngModel)]="y.id_ducto">
           </div>
           <div class="col-6">
-            <label for="">ID Fabricacion: </label>
-            <input type="text" class="form-control" id="IdFabricacion" value="">
+            <label for="">ID Fabricación: </label>
+            <input type="text" class="form-control" id="IdFabricacion" [(ngModel)]="y.id_fabricacion">
           </div>
         </div>
         <div class="row" style="padding-top: 7px;">
           <div class="col-6">
             <label for="tipoMaterial">Tipo Material</label>
-            <select id="tipoMaterial" class="form-control">
-              <option value="material1">Material 1</option>
-              <option value="material2">Material 2</option>
+            <select id="tipoMaterial" class="form-control" [(ngModel)]="y.id_tipo_material">
+              <option *ngFor="let x of tipoMaterial" [value]="x.id">{{x.nombre}}</option>
               <!-- Agrega más opciones según sea necesario -->
             </select>
           </div>
         
           <div class="col-6">
             <label for="fechaMontaje">Fecha Montaje</label>
-            <input type="text">
+            <input type="text" class="form-control" [(ngModel)]="y.fecha_montaje">
           </div>
         </div>
 
          <div class="row" style="padding-top: 7px;">
           <div class="col-6">
             <label for="tipoMaterial">Linea</label>
-            <select id="tipoMaterial" class="form-control">
-              <option value="material1">Principal</option>
-              <option value="material2">ByPass</option>
-              <option value="material2">Muro</option>
-              <option value="material2">Lateral</option>
+            <select id="tipoMaterial" class="form-control" [(ngModel)]="y.id_linea">
+              <option *ngFor="let x of lineas" [value]="x.id">{{x.nombre}}</option>
               <!-- Agrega más opciones según sea necesario -->
             </select>
           </div>
         
           <div class="col-6">
             <label for="fechaMontaje">Numero Tramo</label>
-            <input type="text">
+            <input type="text" class="form-control" [(ngModel)]="y.N_Tramo">
           </div>
         </div>
 
         <div class="row" style="padding-top: 7px;">
           <div class="col-12">
             <label for="tipoMaterial">Girado</label>
-            <select id="tipoMaterial" class="form-control">
-              <option value="material1">SI</option>
-              <option value="material2">NO</option>
+            <select id="tipoMaterial" class="form-control" [(ngModel)]="y.girado">
+              <option value="0">NO</option>
+              <option value="1">SI</option>
               <!-- Agrega más opciones según sea necesario -->
             </select>
           </div>
@@ -316,7 +314,7 @@
       </div>
       <div class="modal-footer">
         <!-- Botones para acciones en el modal -->
-        <button class="btn btn-success" style="margin: 20px;"  >Ingresar ducto</button>
+        <button class="btn btn-success" style="margin: 20px;"  >Actualizar ducto</button>
         <button class="btn btn-danger" style="margin: 20px;" (click)="closeModalEditar()" >Cancelar</button>
       </div>
     </div>

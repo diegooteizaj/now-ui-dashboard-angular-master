@@ -264,21 +264,20 @@ export class DuctosComponent implements OnInit {
     });
   }
 
-  openModalEditar(id:number){
-    console.log('id',id);
-    this.modalEditarDuctos=true;
-    this.ductoEditar=[];
-    this.ductoService.getDuctoById(id).subscribe(
-      (data) => {
-        console.log('data',data)
-        this.ductoEditar.push(data)
-      },
-      (error) => {
-        console.error('Error al obtener el ducto por ID:', error);
-      }
-    );
-
+  async openModalEditar(id: number): Promise<void> {
+    console.log('id', id);
+    this.ductoEditar = []; // Inicializar ductoEditar
+  
+    try {
+      const data = await this.ductoService.getDuctoById(id).toPromise();
+      console.log('data', data);
+      this.ductoEditar.push(data); // Asignar los datos del ducto
+      this.modalEditarDuctos = true; // Abrir el modal después de cargar los datos
+    } catch (error) {
+      console.error('Error al obtener el ducto por ID:', error);
+    }
   }
+  
 
   closeModalEditar(){
     this.modalEditarDuctos=false;
