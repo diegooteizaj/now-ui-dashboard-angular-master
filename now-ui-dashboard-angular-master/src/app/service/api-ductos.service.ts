@@ -23,4 +23,8 @@ export class ApiDuctosService {
   getDuctosEstadoCorreccion():Observable<any>{
     return this.http.get(this.api+'/getDuctosEstadoCorreccion');
   }
+
+  createNewDucto(ducto: any): Observable<any> {
+    return this.http.post(this.api + '/addDucto', ducto);
+  }
 }

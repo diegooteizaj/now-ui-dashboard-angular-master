@@ -32,6 +32,16 @@ export class DuctosComponent implements OnInit {
 
   ductoEditar:any=[];
 
+  //para modal Ingresar
+  //modalIngreasrDuctos: boolean = true; // Suponiendo que esta variable controla la visibilidad del modal
+  idDucto: string = '';
+  idFabricacion: string = '';
+  tipoMaterialSeleccionado: string = '';
+  fechaMontaje: string = '';
+  lineaSeleccionada: string = '';
+  numeroTramo: string = '';
+  girado: string = '';
+
   constructor(
     private ductoService: ApiDuctosService,
     private tipoMaterialService:ApiTipoMaterialService,
@@ -274,4 +284,67 @@ export class DuctosComponent implements OnInit {
     this.modalEditarDuctos=false;
   }
 
+  guardarDatos() {
+    // Aquí puedes guardar los datos en un objeto o hacer lo que necesites con ellos
+    const datosDuctos = {
+      id_ducto: parseInt(this.idDucto),
+      id_fabricacion: parseInt(this.idFabricacion),
+      id_tipo_material: this.buscarTipoMaterialPorNombre(this.tipoMaterialSeleccionado),
+     // fecha_montaje: new Date(this.fechaMontaje),
+     fecha_montaje: this.formatearFechaParaBD(this.fechaMontaje),
+     id_linea: this.buscarLineaSeleccionadaPorNombre(this.lineaSeleccionada),
+      N_Tramo: this.numeroTramo,
+      girado: this.girado == 'SI' ? 1 : 0
+    };
+
+    console.log(datosDuctos); // Para ver los datos en la consola
+    console.log('datos a ingresar',datosDuctos);
+     // Llama al método createNewDucto del servicio ApiDuctosService para enviar los datos del ducto al servidor y crear un nuevo ducto
+     this.ductoService.createNewDucto(datosDuctos).subscribe(
+      
+      (response) => {
+        console.log('Ducto creado correctamente. ID del ducto creado:', response.insertedDuctoId);
+        this.modalIngreasrDuctos = false;
+        this.ngOnInit();
+        // Aquí puedes manejar la respuesta del servidor después de crear el ducto, como actualizar la lista de ductos, mostrar un mensaje de éxito, etc.
+      },
+      (error) => {
+        console.error('Error al crear el ducto:', error);
+        // Aquí puedes manejar los errores, como mostrar un mensaje de error al usuario, registrar el error en un servicio de registro de errores, etc.
+      }
+      
+    );
+
+    
+  }
+
+  buscarLineaSeleccionadaPorNombre(nombre:string){
+    const lineaEncontrada = this.lineas.find(linea => linea.nombre === nombre);
+    // Si se encontró la línea, se devuelve su id_linea, de lo contrario se devuelve undefined
+    return lineaEncontrada ? lineaEncontrada.id_linea : -1;
+  }
+
+  buscarTipoMaterialPorNombre(nombre:string){
+    const tipoMaterialEncontrado = this.tipoMaterial.find(linea => linea.nombre === nombre);
+    // Si se encontró la línea, se devuelve su id_linea, de lo contrario se devuelve undefined
+    return tipoMaterialEncontrado ? tipoMaterialEncontrado.id_tipo_material : -1;
+  }
+
+//   formatearFechaParaBD(fecha: string): string {
+//     const anio: number = fecha.getFullYear();
+//     const mes: number = fecha.getMonth() + 1; // Sumamos 1 al mes porque en JavaScript los meses van de 0 a 11
+//     const dia: number = fecha.getDate();
+//     return `${anio}-${mes < 10 ? '0' : ''}${mes}-${dia < 10 ? '0' : ''}${dia}`;
+// }
+
+formatearFechaParaBD(fechaString: string): string {
+  // Dividir la cadena de fecha en día, mes y año
+  const partesFecha: string[] = fechaString.split('-');
+  const dia: string = partesFecha[0];
+  const mes: string = partesFecha[1];
+  const anio: string = partesFecha[2];
+
+  // Formatear la fecha en el formato esperado por la base de datos (YYYY-MM-DD)
+  return `${anio}-${mes}-${dia}`;
+}
 }
