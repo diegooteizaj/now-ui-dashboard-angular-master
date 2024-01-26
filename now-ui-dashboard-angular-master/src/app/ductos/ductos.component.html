@@ -97,7 +97,7 @@
                   </button>
                 </td>
                 <td style="padding-left:20px;">
-                  <button type="button" class="btn btn-warning" (click)="abrirModalQr(x.id_ducto)">
+                  <button type="button" class="btn btn-warning" (click)="openModalEditar(x.id_ducto)">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
                       <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.5.5 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11z"/>
                     </svg>
@@ -249,4 +249,88 @@
   </div>
 </div>
 
+
+
+<div *ngIf="modalEditarDuctos" class="overlay">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Editar Ductos</h5>
+        <button type="button" class="close"  (click)="closeModalEditar()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-6">
+            <label for="">ID Ducto : </label>
+            <input type="text" class="form-control" id="IdDucto" value="">
+          </div>
+          <div class="col-6">
+            <label for="">ID Fabricacion: </label>
+            <input type="text" class="form-control" id="IdFabricacion" value="">
+          </div>
+        </div>
+        <div class="row" style="padding-top: 7px;">
+          <div class="col-6">
+            <label for="tipoMaterial">Tipo Material</label>
+            <select id="tipoMaterial" class="form-control">
+              <option value="material1">Material 1</option>
+              <option value="material2">Material 2</option>
+              <!-- Agrega más opciones según sea necesario -->
+            </select>
+          </div>
+        
+          <div class="col-6">
+            <label for="fechaMontaje">Fecha Montaje</label>
+            <input type="text">
+          </div>
+        </div>
+
+         <div class="row" style="padding-top: 7px;">
+          <div class="col-6">
+            <label for="tipoMaterial">Linea</label>
+            <select id="tipoMaterial" class="form-control">
+              <option value="material1">Principal</option>
+              <option value="material2">ByPass</option>
+              <option value="material2">Muro</option>
+              <option value="material2">Lateral</option>
+              <!-- Agrega más opciones según sea necesario -->
+            </select>
+          </div>
+        
+          <div class="col-6">
+            <label for="fechaMontaje">Numero Tramo</label>
+            <input type="text">
+          </div>
+        </div>
+
+        <div class="row" style="padding-top: 7px;">
+          <div class="col-12">
+            <label for="tipoMaterial">Girado</label>
+            <select id="tipoMaterial" class="form-control">
+              <option value="material1">SI</option>
+              <option value="material2">NO</option>
+              <!-- Agrega más opciones según sea necesario -->
+            </select>
+          </div>
+        </div>
+        
+        <!-- <div class="modal-body">
+          <ngx-qrcode
+          [elementType]="elementType"
+          [value]="ductoUrl"
+          cssClass="aclass"
+          errorCorrectionLevel="L">
+        </ngx-qrcode>
+        </div> -->
+      </div>
+      <div class="modal-footer">
+        <!-- Botones para acciones en el modal -->
+        <button class="btn btn-success" style="margin: 20px;"  >Ingresar ducto</button>
+        <button class="btn btn-danger" style="margin: 20px;" (click)="closeModalEditar()" >Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
 

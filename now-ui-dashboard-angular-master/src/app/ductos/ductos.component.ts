@@ -28,6 +28,9 @@ export class DuctosComponent implements OnInit {
   tipoMaterial:any=[];
 
   modalIngreasrDuctos:boolean=false;
+  modalEditarDuctos:boolean=false;
+
+  ductoEditar:any=[];
 
   constructor(
     private ductoService: ApiDuctosService,
@@ -249,6 +252,26 @@ export class DuctosComponent implements OnInit {
       reader.onerror = reject;
       reader.readAsDataURL(blob);
     });
+  }
+
+  openModalEditar(id:number){
+    console.log('id',id);
+    this.modalEditarDuctos=true;
+    this.ductoEditar=[];
+    this.ductoService.getDuctoById(id).subscribe(
+      (data) => {
+        console.log('data',data)
+        this.ductoEditar.push(data)
+      },
+      (error) => {
+        console.error('Error al obtener el ducto por ID:', error);
+      }
+    );
+
+  }
+
+  closeModalEditar(){
+    this.modalEditarDuctos=false;
   }
 
 }

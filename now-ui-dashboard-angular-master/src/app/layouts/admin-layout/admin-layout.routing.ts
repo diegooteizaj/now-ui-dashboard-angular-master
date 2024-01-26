@@ -11,6 +11,8 @@ import { UpgradeComponent } from '../../upgrade/upgrade.component';
 import { DuctosComponent } from '../../ductos/ductos.component';
 import {LoginComponent} from '../../login/login.component'
 import { DashboardTestComponent } from '../../dashboard-test/dashboard-test.component'
+import { ModalCerrarSesionComponent } from '../../modal-cerrar-sesion/modal-cerrar-sesion.component';
+import { Component } from '@angular/core';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',      component: DashboardComponent },
@@ -23,5 +25,6 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'upgrade',        component: UpgradeComponent },
     { path: 'ductos',         component: DuctosComponent },
     { path: 'login',          component: LoginComponent},
-    { path: 'dashboard-test',          component: DashboardTestComponent}
+    { path: 'dashboard-test',          component: DashboardTestComponent},
+    {path: 'modal-cerrar-sesion' ,component:ModalCerrarSesionComponent}
 ];

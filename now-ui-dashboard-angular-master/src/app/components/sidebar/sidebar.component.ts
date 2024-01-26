@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 declare interface RouteInfo {
     path: string;
@@ -8,7 +9,7 @@ declare interface RouteInfo {
 }
 export const ROUTES: RouteInfo[] = [
     { path: '/admin/dashboard', title: 'Dashboard',  icon: 'design_app', class: '' },
-    // { path: '/icons', title: 'Icons',  icon:'education_atom', class: '' },
+    { path: '/admin/icons', title: 'Icons',  icon:'education_atom', class: '' },
     // { path: '/maps', title: 'Maps',  icon:'location_map-big', class: '' },
     // { path: '/notifications', title: 'Notifications',  icon:'ui-1_bell-53', class: '' },
 
@@ -21,6 +22,8 @@ export const ROUTES: RouteInfo[] = [
 
 ];
 
+
+
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
@@ -28,8 +31,12 @@ export const ROUTES: RouteInfo[] = [
 })
 export class SidebarComponent implements OnInit {
   menuItems: any[];
+  cerrarSesion:string='/admin/modal-cerrar-sesion';
+  modalCerrarSesion:boolean=false;
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
 
   ngOnInit() {
@@ -41,4 +48,16 @@ export class SidebarComponent implements OnInit {
       }
       return true;
   };
+
+  modalCerrarSesionFuncion(){
+    this.modalCerrarSesion=true;
+  }
+
+  salirSistema(){
+    this.router.navigate(['/']);
+  }
+
+  CancelarSalirSistema(){
+    this.modalCerrarSesion=false;
+  }
 }

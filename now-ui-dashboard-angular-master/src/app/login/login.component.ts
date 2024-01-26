@@ -47,6 +47,8 @@ export class LoginComponent implements OnInit {
       (error) => {
         // Manejar los errores aquí
         console.error(error);
+        this.mensajeErrorLogin = true;
+
       }
     );
   }
@@ -56,6 +58,10 @@ export class LoginComponent implements OnInit {
     if(x==true){
       this.mensajeOk = false;
     }
+  }
+
+  cerrarMensajeLogin(){
+    this.mensajeErrorLogin=false;
   }
 
 }

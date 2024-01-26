@@ -1,3 +1,66 @@
 .claseSidebar{
     color:#00364a;
 }
+
+/* Agrega estas clases a tu archivo de estilos global o a tu componente específico */
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Opacidad del fondo */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .modal-dialog {
+    max-width: 500px; /* Ajusta el ancho del modal según tus necesidades */
+    background: #fff; /* Fondo del modal */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  }
+  .modal-content {
+    z-index: 1000; /* Ajusta el valor según sea necesario */
+  }
+  
+  .mat-datepicker-panel {
+    z-index: 1100; /* Ajusta el valor según sea necesario, debe ser mayor que el z-index del modal */
+  }
+  
+  
+  /* Estilos adicionales para el botón Cerrar (X) si lo necesitas */
+  .close {
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    color: #000;
+  }
+  
+  /* Estilo para centrar el contenido del modal */
+  .modal-body {
+    text-align: center;
+  }
+  
+  /* Ajusta los estilos de los botones según tus necesidades */
+  .btn {
+    margin: 10px;
+  }
+  
+
+  .mat-datepicker-panel {
+    position: absolute; /* O prueba con 'fixed' o 'relative' según sea necesario */
+    top: 50%; /* O ajusta la posición superior según sea necesario */
+    left: 50%; /* O ajusta la posición izquierda según sea necesario */
+    transform: translate(-50%, -50%); /* Centra el calendario */
+  }
+
+  
+  .mat-datepicker-panel {
+    width: auto; /* O ajusta el ancho según sea necesario */
+  }
+  
