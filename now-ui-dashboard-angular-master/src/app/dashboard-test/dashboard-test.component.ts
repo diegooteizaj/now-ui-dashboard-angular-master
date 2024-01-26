@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardTestComponent implements OnInit {
 
+  iframeUrl:string="localhost:4201/"
   constructor() { }
 
   ngOnInit(): void {
