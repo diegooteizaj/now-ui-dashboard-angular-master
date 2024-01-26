@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
   //password: string = '';
   mensajeOk:boolean = false;
   mensajeOkGlosa : string = 'validacion Exitosa 200 ok.'
+  arroba:string='@'
 
   constructor(
     private apiLoginService:ApiLoginService,
