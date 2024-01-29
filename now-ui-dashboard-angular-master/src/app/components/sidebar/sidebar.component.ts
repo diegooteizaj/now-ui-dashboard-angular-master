@@ -8,16 +8,17 @@ declare interface RouteInfo {
     class: string;
 }
 export const ROUTES: RouteInfo[] = [
-    { path: '/admin/dashboard-test', title: 'Dashboard test',  icon:'design_app', class: '' },
+    { path: '/admin/dashboard-test', title: 'Dashboard',  icon:'design_app', class: '' },
     // { path: '/admin/dashboard', title: 'Dashboard',  icon: 'design_app', class: '' },
     // { path: '/admin/icons', title: 'Icons',  icon:'education_atom', class: '' },
     // { path: '/maps', title: 'Maps',  icon:'location_map-big', class: '' },
     // { path: '/notifications', title: 'Notifications',  icon:'ui-1_bell-53', class: '' },
-
     // { path: '/admin/user-profile', title: 'User Profile',  icon:'users_single-02', class: '' },
     // { path: '/table-list', title: 'Table List',  icon:'design_bullet-list-67', class: '' },
     // { path: '/typography', title: 'Typography',  icon:'text_caps-small', class: '' },
     { path: '/admin/ductos', title: 'Ductos',  icon:'objects_spaceship', class: '' },
+    { path: '/admin/usuarios', title: 'Usuarios',  icon:'users_single-02', class: ''},
+    { path: '/admin/reportes', title: 'Reportes',  icon:'design_bullet-list-67', class: ''}
     // { path: '/admin/dashboard-test', title: 'Dashboard test',  icon:'objects_spaceship', class: '' },
     // { path: '/upgrade', title: 'Upgrade to PRO',  icon:'objects_spaceship', class: 'active active-pro' }
 

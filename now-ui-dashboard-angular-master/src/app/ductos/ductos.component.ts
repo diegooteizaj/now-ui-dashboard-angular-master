@@ -352,6 +352,7 @@ formatearFechaParaBD(fechaString: string): string {
   return `${anio}-${mes}-${dia}`;
 }
 
+medicionIntermedia:any=[];
 getMedicion(id:number,anillo:string){
   const body = {
     id_ducto:id,
@@ -360,7 +361,12 @@ getMedicion(id:number,anillo:string){
 
   this.medicionService.getMedicion(body).subscribe((response)=>{
     console.log('Información de anillo',response);
-  })
+    this.medicionIntermedia = response;
+  });
+
+  console.log('intermedia',this.medicionIntermedia);
+
+  return this.medicionIntermedia;
 }
 
 anilloSeleccionado:any;
@@ -382,6 +388,7 @@ openModalAnillos(id:number,anillos:any,n_tramo:any){
 
    this.medicion = this.getMedicion(id,anillos);
    console.log('this.medicion',this.medicion);
+   console.log('anillo a ', this.medicion);
 
 
 }

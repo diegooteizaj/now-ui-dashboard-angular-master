@@ -23,6 +23,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
 import { ModalCerrarSesionComponent } from '../../modal-cerrar-sesion/modal-cerrar-sesion.component';
+import { UsuariosComponent } from '../../usuarios/usuarios.component';
+import { ReportesComponent } from '../../reportes/reportes.component';
 
 
 
@@ -52,7 +54,9 @@ import { ModalCerrarSesionComponent } from '../../modal-cerrar-sesion/modal-cerr
     NotificationsComponent,
     DuctosComponent,
     DashboardTestComponent,
-    ModalCerrarSesionComponent
+    ModalCerrarSesionComponent,
+    UsuariosComponent,
+    ReportesComponent,
   ]
 })
 
