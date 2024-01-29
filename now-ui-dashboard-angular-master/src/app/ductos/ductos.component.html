@@ -61,18 +61,18 @@
                 <td [width]="200">
                  <div class="row">
                   <div class="col-4">
-                    <button class="btn btn-info" >
+                    <button class="btn btn-info" (click)="openModalAnillos(x.id_ducto,'A',x.N_Tramo)">
                       <b>A</b>
                    </button>
                   </div>
                   <div class="col-4">
-                    <button class="btn btn-success">
+                    <button class="btn btn-success" (click)="openModalAnillos(x.id_ducto,'B',x.N_Tramo)">
                      <b>B</b>
                     </button>
                   </div>
 
                   <div class="col-4">
-                    <button class="btn  btn-secondary" >
+                    <button class="btn  btn-secondary" (click)="openModalAnillos(x.id_ducto,'C',x.N_Tramo)">
                       <b>C</b>
                     </button>
                   </div>
@@ -103,7 +103,7 @@
         <div class="row">
           <div class="col-md-4">
               <!-- Botón para imprimir PDF -->
-              <button class="btn btn-primary" (click)="generarPDFsMasivos()">
+              <button class="btn btn-primary" (click)="this.imprimirQR()">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-qr-code" viewBox="0 0 16 16">
                   <path d="M2 2h2v2H2z"/>
                   <path d="M6 0v6H0V0zM5 1H1v4h4zM4 12H2v2h2z"/>
@@ -320,4 +320,28 @@
     </div>
   </div>
 </div>
+
+<div *ngIf="modalAnillos" class="overlay">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Anillo {{this.anilloSeleccionado}} de tramo {{this.tramoSeleccionado}}</h5>
+        <button type="button" class="close" (click)="closeModalAnillos()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      
+      <div class="modal-footer">
+        <!-- Botones para acciones en el modal -->
+        <!-- <button class="btn btn-success" style="margin: 20px;"  >Actualizar ducto</button> -->
+        <button class="btn btn-danger" style="margin: 20px;" (click)="closeModalAnillos()" >Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" *ngIf="spinner">
+  <div class="spinner"></div>
+</div>
+
 

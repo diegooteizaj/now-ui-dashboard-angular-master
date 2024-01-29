@@ -5,6 +5,7 @@ import * as QRCode from 'qrcode';
 import * as moment from 'moment';
 import { ApiTipoMaterialService } from '../service/api-tipo-material.service';
 import { ApiLineaService } from '../service/api-linea.service';
+import { ApiMedicionService } from '../service/api-medicion.service';
 
 @Component({
   selector: 'app-ductos',
@@ -42,10 +43,14 @@ export class DuctosComponent implements OnInit {
   numeroTramo: string = '';
   girado: string = '';
 
+  //Modal Anillos
+  modalAnillos:boolean=false;
+
   constructor(
     private ductoService: ApiDuctosService,
     private tipoMaterialService:ApiTipoMaterialService,
-    private lineaService:ApiLineaService
+    private lineaService:ApiLineaService,
+    private medicionService: ApiMedicionService
   ) { }
 
   ngOnInit(): void {
@@ -346,4 +351,53 @@ formatearFechaParaBD(fechaString: string): string {
   // Formatear la fecha en el formato esperado por la base de datos (YYYY-MM-DD)
   return `${anio}-${mes}-${dia}`;
 }
+
+getMedicion(id:number,anillo:string){
+  const body = {
+    id_ducto:id,
+    anillo:anillo
+  }
+
+  this.medicionService.getMedicion(body).subscribe((response)=>{
+    console.log('Información de anillo',response);
+  })
+}
+
+anilloSeleccionado:any;
+tramoSeleccionado:any;
+idSeleccionado:any;
+
+medicion:any;
+
+openModalAnillos(id:number,anillos:any,n_tramo:any){
+  if(anillos == 'A' || anillos =='B' || anillos=='C'){
+    if(id!=null){
+      this.modalAnillos=true;
+    }
+  }
+
+  this.anilloSeleccionado = anillos;
+  this.idSeleccionado = id;
+  this.tramoSeleccionado = n_tramo;
+
+   this.medicion = this.getMedicion(id,anillos);
+   console.log('this.medicion',this.medicion);
+
+
+}
+
+closeModalAnillos(){
+  this.modalAnillos=false;
+}
+
+spinner:boolean = false;
+imprimirQR(){
+  this.spinner=true;
+ this.generarPDFsMasivos();
+  setTimeout(() => {
+    this.spinner = false; // Desactiva el spinner después de tres segundos
+  }, 4000);
+
+}
+
 }

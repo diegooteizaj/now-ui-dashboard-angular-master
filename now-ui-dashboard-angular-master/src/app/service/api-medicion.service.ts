@@ -16,4 +16,8 @@ export class ApiMedicionService {
   getMedicionByIdDucto(id:number):Observable<any>{
     return this.http.get(this.apiUrl+`/getMedicionByIdDucto/${id}`);
   }
+
+  getMedicion(body:any):Observable<any>{
+    return this.http.post(this.apiUrl+'getMedicion',body);
+  }
 }

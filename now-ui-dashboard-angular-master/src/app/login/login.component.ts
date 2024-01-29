@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
         // Manejar la respuesta del servidor aquí
         console.log(response);
         this.mensajeOk = true;
-        this.router.navigate(['/admin/dashboard']);
+        this.router.navigate(['/admin/dashboard-test']);
       },
       (error) => {
         // Manejar los errores aquí
