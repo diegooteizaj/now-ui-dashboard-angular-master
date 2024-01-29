@@ -23,9 +23,9 @@
            <th>
              Linea
            </th>
-            <th>
+            <!-- <th>
                 Anillos
-            </th>
+            </th> -->
 
             <th >
              Código QR
@@ -58,26 +58,26 @@
                  {{obtenerLineasPorId(x.id_linea)}}
                 </td>
 
-                <td >
+                <!-- <td >
                  <div class="row">
                   <div class="col-4">
-                    <button class="btn btn-info" (click)="openModalAnillos(x.id_ducto,'A',x.N_Tramo)">
+                    <button class="btn btn-info" (click)="openModalAnillos(x.id_ducto,'A',x.N_Tramo,x.girado)">
                       <b>A</b>
                    </button>
                   </div>
                   <div class="col-4">
-                    <button class="btn btn-success" (click)="openModalAnillos(x.id_ducto,'B',x.N_Tramo)">
+                    <button class="btn btn-success" (click)="openModalAnillos(x.id_ducto,'B',x.N_Tramo,x.girado)">
                      <b>B</b>
                     </button>
                   </div>
 
                   <div class="col-4">
-                    <button class="btn  btn-secondary" (click)="openModalAnillos(x.id_ducto,'C',x.N_Tramo)">
+                    <button class="btn  btn-secondary" (click)="openModalAnillos(x.id_ducto,'C',x.N_Tramo,x.girado)">
                       <b>C</b>
                     </button>
                   </div>
                  </div>
-                </td>
+                </td> -->
                 <td style="padding-left:20px;">
                   <button type="button" class="btn btn-light" (click)="abrirModalQr(x.id_ducto)">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-qr-code" viewBox="0 0 16 16">
@@ -101,7 +101,7 @@
         </table>
         <!-- <pagination-controls (pageChange)="pageChanged($event)" id="custom-pagination"></pagination-controls> -->
         <div class="row">
-          <div class="col-md-4">
+          <div class="col-md-6">
               <!-- Botón para imprimir PDF -->
               <button class="btn btn-primary" (click)="this.imprimirQR()">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-qr-code" viewBox="0 0 16 16">
@@ -114,16 +114,15 @@
                   QR masivo
               </button>
           </div>
-          <div class="col-md-4">
-            <!-- Botón para imprimir PDF -->
+          <!-- <div class="col-md-4">
             <button class="btn btn-success" (click)="openModalIngresar()">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-printer" viewBox="0 0 16 16">
                     <path d="M0 1V4H16V1H0zM15 5H1v8h14V5zM1 13V15h14v-2H1zm5-7H4v-1h2v1zM3 9h2v1H3V9z"/>
                 </svg>
                 Ingresar Ductos
             </button>
-        </div>
-          <div class="col-md-4">
+        </div> -->
+          <div class="col-md-6">
               <!-- Paginador ... -->
               <pagination-controls (pageChange)="pageChanged($event)" id="custom-pagination"></pagination-controls>
           </div>
@@ -328,46 +327,82 @@
         <h5 class="modal-title">Anillo {{this.anilloSeleccionado}} de tramo {{this.tramoSeleccionado}}</h5>
       </div>
 
-      <div class="modal-body">
+      <div *ngIf="bodyVacio" class="modal-body">
+        <b><h6>No tiene Mediciones cargadas el ducto.</h6></b>
+      </div>
+
+      <div *ngIf="!bodyVacio" class="modal-body">
+        <div class="container-centred ">
+
+          <table>
+            <tbody>
+              <tr>
+               <td><b>Diametro: </b> </td> 
+               <td>{{this.medicion[0].diametro}}</td>
+
+               <td> <b>Girado: </b> </td> 
+               <td>{{this.girados == 1 ? 'SI':'NO'}}</td>
+
+              </tr>
+              <tr>
+                <td><b>Espesor Minimo:</b></td> 
+                <td>{{this.medicion[0].Espesor_min}}</td>
+ 
+                <td> <b>Fecha Medicion:</b> </td> 
+                <td>{{ formatearFecha(this.medicion[0].Fecha_medicion)}}</td>
+ 
+               </tr>
+
+               <tr>
+                <td><b>Proxima Medición: </b></td> 
+                <td>{{formatearFecha(this.medicion[0].proxima_medicion)}}</td>
+ 
+                <td> <b>Tipo Material:</b> </td> 
+                <td>WEARPRO</td>
+ 
+               </tr>
+
+               <tr>
+                <td><b>Tasa Desgaste: </b></td> 
+                <td>{{this.medicion[0].tasa_desgaste}}</td>
+ 
+                <td> <b>Direccion Minimo:</b> </td> 
+                <td>{{this.medicion[0].direccion_minimo}}</td>
+ 
+               </tr>
+            </tbody>
+          </table>
+        </div>
         <div class="container">
-          <div class="row">
-            <div class="col-4">
-              <label for="">Anillo {{this.medicion}}</label>
-            </div>
-            <div class="col-4">
-              <label for="">Tipo Material: WEARPRO</label>
-            </div>
-            <div class="col-4">
-              <label for="">Diametro: {{this.medicion[0].diametro}}</label>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-4">
-              <label for="">Fecha Medicion {{this.medicion[0].Fecha_medicion}}</label>
-            </div>
-            <div class="col-4">
-              <label for="">Espesor Minimo: {{this.medicion[0].Espesor_min}}</label>
-            </div>
-            <div class="col-4">
-              <label for="">Diametro: {{this.medicion[0].tasa_desgaste}}</label>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-4">
-              <label for="">Fecha Medicion {{this.medicion[0].Fecha_medicion}}</label>
-            </div>
-            <div class="col-4">
-              <label for="">Espesor Minimo: {{this.medicion[0].Espesor_min}}</label>
-            </div>
-            <div class="col-4">
-              <label for="">Diametro: {{this.medicion[0].tasa_desgaste}}</label>
-            </div>
-          </div>
+          <table class="table">
+            <thead class=" text-primary">
+             <th>Id Ducto</th>
+             <th>Espesor Minimo</th>
+             <th>Diametro</th>
+             <th>Dirección Minimo</th>
+             <th>Tramo</th>
+             <th>Fecha medición</th>
+             <th>Proxima medición</th>
+             <th>Tasa desgaste</th>
+            </thead>
+            <tbody *ngFor="let x of medicion">
+              <tr>
+                <td>{{x.id_ducto}}</td>
+                <td>{{x.Espesor_min}}</td>
+                <td>{{x.diametro}}</td>
+                <td>{{x.direccion_minimo}}</td>
+                <td>{{x.N_Tramo}}</td>
+                <td>{{formatearFecha(x.Fecha_medicion)}}</td>
+                <td>{{formatearFecha(x.proxima_medicion)}}</td>
+                <td>{{x.tasa_desgaste}}</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
       
       <div class="modal-footer">
-        <!-- Botones para acciones en el modal -->
+       
         <!-- <button class="btn btn-success" style="margin: 20px;"  >Actualizar ducto</button> -->
         <button class="btn btn-danger" style="margin: 20px;" (click)="closeModalAnillos()" >Cerrar</button>
       </div>

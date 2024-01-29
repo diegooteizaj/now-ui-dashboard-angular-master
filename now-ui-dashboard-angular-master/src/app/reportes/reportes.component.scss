@@ -1,0 +1,161 @@
+/* Agrega estas clases a tu archivo de estilos global o a tu componente específico */
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Opacidad del fondo */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .modal-dialog {
+    max-width: 500px; /* Ajusta el ancho del modal según tus necesidades */
+    background: #fff; /* Fondo del modal */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  }
+  .modal-content {
+    z-index: 1000; /* Ajusta el valor según sea necesario */
+  }
+  
+  .mat-datepicker-panel {
+    z-index: 1100; /* Ajusta el valor según sea necesario, debe ser mayor que el z-index del modal */
+  }
+  
+  
+  /* Estilos adicionales para el botón Cerrar (X) si lo necesitas */
+  .close {
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    color: #000;
+  }
+  
+  /* Estilo para centrar el contenido del modal */
+  .modal-body {
+    text-align: center;
+  }
+  
+  /* Ajusta los estilos de los botones según tus necesidades */
+  .btn {
+    margin: 10px;
+  }
+  
+
+  .mat-datepicker-panel {
+    position: absolute; /* O prueba con 'fixed' o 'relative' según sea necesario */
+    top: 50%; /* O ajusta la posición superior según sea necesario */
+    left: 50%; /* O ajusta la posición izquierda según sea necesario */
+    transform: translate(-50%, -50%); /* Centra el calendario */
+  }
+
+  
+  .mat-datepicker-panel {
+    width: auto; /* O ajusta el ancho según sea necesario */
+  }
+
+
+  //spinner
+
+  .overlay2 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .spinner {
+    border: 4px solid rgba(255, 255, 255, 0.1); /* Borde semitransparente */
+    border-left-color: #7986cb;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+
+
+
+  //
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .modal-dialog {
+    position: relative;
+    padding: 20px;
+    background: #fff;
+    border-radius: 5px;
+    max-width: 1000px; /* Ancho máximo del modal */
+    width: 90%;
+    max-height: 700px; /* Altura máxima del modal */
+    overflow-y: auto; /* Permitir desplazamiento vertical si el contenido es largo */
+  }
+  
+  .modal-content {
+    overflow: auto; /* Permitir desplazamiento en caso de contenido largo */
+  }
+  
+  .container {
+    margin-bottom: 20px;
+  }
+  
+  /* Estilos adicionales para hacer que la tabla sea responsiva */
+  .table {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #212529;
+    background-color: transparent;
+    border-collapse: collapse;
+  }
+  
+  .table th,
+  .table td {
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+  }
+  
+  .table thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #dee2e6;
+  }
+  
+  @media (max-width: 1000px) {
+    .modal-dialog {
+      width: 95%; /* Se ajusta el ancho del modal para dispositivos más pequeños */
+    }
+  }
+  
+  .container-centred {
+    margin: 0 auto; /* Centra horizontalmente */
+    max-width: 90%; /* Ancho máximo del contenedor */
+  }
+  
+  

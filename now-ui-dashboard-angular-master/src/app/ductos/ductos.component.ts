@@ -352,44 +352,42 @@ formatearFechaParaBD(fechaString: string): string {
   return `${anio}-${mes}-${dia}`;
 }
 
-medicionIntermedia:any=[];
-getMedicion(id:number,anillo:string){
-  const body = {
-    id_ducto:id,
-    anillo:anillo
-  }
-
-  this.medicionService.getMedicion(body).subscribe((response)=>{
-    console.log('Información de anillo',response);
-    this.medicionIntermedia = response;
-  });
-
-  console.log('intermedia',this.medicionIntermedia);
-
-  return this.medicionIntermedia;
-}
 
 anilloSeleccionado:any;
 tramoSeleccionado:any;
 idSeleccionado:any;
-
+girados:any;
 medicion:any;
 
-openModalAnillos(id:number,anillos:any,n_tramo:any){
+bodyVacio:boolean=false;
+openModalAnillos(id:number,anillos:any,n_tramo:any,girado:any){
   if(anillos == 'A' || anillos =='B' || anillos=='C'){
     if(id!=null){
-      this.modalAnillos=true;
+
+      const body = {
+        id_ducto:id,
+        anillo:anillos
+      }
+    
+      this.medicionService.getMedicion(body).subscribe((response)=>{
+        this.medicion =  response;
+        if(this.medicion.length==0){
+          this.bodyVacio=true;
+        }else{
+          this.bodyVacio=false;
+        }
+        console.log(response);
+        this.modalAnillos=true;
+      });
+    
+
     }
   }
 
   this.anilloSeleccionado = anillos;
   this.idSeleccionado = id;
   this.tramoSeleccionado = n_tramo;
-
-   this.medicion = this.getMedicion(id,anillos);
-   console.log('this.medicion',this.medicion);
-   console.log('anillo a ', this.medicion);
-
+  this.girados = girado;
 
 }
 

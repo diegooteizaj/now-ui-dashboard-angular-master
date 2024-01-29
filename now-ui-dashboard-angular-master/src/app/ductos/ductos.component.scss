@@ -90,5 +90,72 @@
     }
   }
   
+
+
+
+  //
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .modal-dialog {
+    position: relative;
+    padding: 20px;
+    background: #fff;
+    border-radius: 5px;
+    max-width: 1000px; /* Ancho máximo del modal */
+    width: 90%;
+    max-height: 700px; /* Altura máxima del modal */
+    overflow-y: auto; /* Permitir desplazamiento vertical si el contenido es largo */
+  }
+  
+  .modal-content {
+    overflow: auto; /* Permitir desplazamiento en caso de contenido largo */
+  }
+  
+  .container {
+    margin-bottom: 20px;
+  }
+  
+  /* Estilos adicionales para hacer que la tabla sea responsiva */
+  .table {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #212529;
+    background-color: transparent;
+    border-collapse: collapse;
+  }
+  
+  .table th,
+  .table td {
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+  }
+  
+  .table thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #dee2e6;
+  }
+  
+  @media (max-width: 1000px) {
+    .modal-dialog {
+      width: 95%; /* Se ajusta el ancho del modal para dispositivos más pequeños */
+    }
+  }
+  
+  .container-centred {
+    margin: 0 auto; /* Centra horizontalmente */
+    max-width: 90%; /* Ancho máximo del contenedor */
+  }
   
   

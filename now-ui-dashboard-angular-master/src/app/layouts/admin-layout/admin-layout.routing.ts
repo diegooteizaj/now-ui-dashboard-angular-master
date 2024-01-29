@@ -12,7 +12,6 @@ import { DuctosComponent } from '../../ductos/ductos.component';
 import {LoginComponent} from '../../login/login.component'
 import { DashboardTestComponent } from '../../dashboard-test/dashboard-test.component'
 import { ModalCerrarSesionComponent } from '../../modal-cerrar-sesion/modal-cerrar-sesion.component';
-import { Component } from '@angular/core';
 import { UsuariosComponent } from '../../usuarios/usuarios.component';
 import { ReportesComponent } from '../../reportes/reportes.component';
 
