@@ -334,12 +334,6 @@ export class DuctosComponent implements OnInit {
     return tipoMaterialEncontrado ? tipoMaterialEncontrado.id_tipo_material : -1;
   }
 
-//   formatearFechaParaBD(fecha: string): string {
-//     const anio: number = fecha.getFullYear();
-//     const mes: number = fecha.getMonth() + 1; // Sumamos 1 al mes porque en JavaScript los meses van de 0 a 11
-//     const dia: number = fecha.getDate();
-//     return `${anio}-${mes < 10 ? '0' : ''}${mes}-${dia < 10 ? '0' : ''}${dia}`;
-// }
 
 formatearFechaParaBD(fechaString: string): string {
   // Dividir la cadena de fecha en día, mes y año

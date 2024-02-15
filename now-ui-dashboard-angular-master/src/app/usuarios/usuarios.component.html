@@ -1,1 +1,93 @@
-<p>usuarios works!</p>
+<div class="container">
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <th>Id Usuario</th>
+                <th> Nombre </th>
+                <th> Correo </th>
+                <th> Password </th>
+                <th> Rol </th>
+            </thead>
+            <tbody *ngFor="let x of listaUsuario">
+                <tr>
+                    <td>{{x.id_Usuario}}</td>
+                    <td>{{x.nombre}}</td>
+                    <td>{{x.correo}}</td>
+                    <td>
+                        <div *ngIf="x.password !== 'PASSWORD'">
+                            <div class="container">********</div>
+                        </div>
+                    </td>
+                    <td>{{x.id_rol}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="row">
+            <div class="col-md-6">
+                <button class="btn btn-success" (click)="ingresarUsuario()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+                        <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z"/>
+                      </svg>
+                    Ingresar Usuario
+                </button>
+            </div>
+            <div class="col-md-6">
+                <!-- Paginador ... -->
+                <pagination-controls (pageChange)="pageChanged($event)" id="custom-pagination"></pagination-controls>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div *ngIf="modalIngresarUsuario" class="overlay">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Ingresar Usuario: </h5>
+          <button type="button" class="close"  (click)="closeModalIngresar()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-6">
+              <label for="">ID Usuario: </label>
+              <input type="text" [(ngModel)]="idUsuario">
+            </div>
+            <div class="col-6">
+              <label for="">Nombre: </label>
+              <input type="text" [(ngModel)]="nombre">
+            </div>
+          </div>
+          <div class="row" style="padding-top: 7px;">
+          
+            <div class="col-6">
+              <label for="fechaMontaje">Correo:</label>
+              <input type="text" [(ngModel)]="correo">
+            </div>
+          </div>
+  
+           <div class="row" style="padding-top: 7px;">
+            <div class="col-6">
+              <label for="linea">Password: </label>
+              <input type="password" [(ngModel)]="password">
+            </div>
+          
+            <div class="col-6">
+              <label for="fechaMontaje">Id Rol:</label>
+              <input type="text" [(ngModel)]="idRol">
+            </div>
+          </div>
+  
+
+        </div>
+        <div class="modal-footer">
+          <!-- Botones para acciones en el modal -->
+          <button class="btn btn-success" style="margin: 20px;" (click)="guardarDatos()">Ingresar</button>
+          <button class="btn btn-danger" style="margin: 20px;" (click)="closeModalIngresar()">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ApiTipoMaterialService {
 
-  private api = 'http://localhost:8085/tipoMaterial';
+  private api = 'https://api.appultrasound.cl/tipoMaterial';
   constructor(
     private http : HttpClient,
   ) { }

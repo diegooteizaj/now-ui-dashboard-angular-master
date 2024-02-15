@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ApiMedicionService {
 
-  private apiUrl = 'http://localhost:8085/medicion';
+  private apiUrl = 'https://api.appultrasound.cl/medicion';
   constructor(
     private http : HttpClient,
   ) { }

@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ApiLoginService {
-  private apiUrl = 'http://localhost:8085'; // Asegúrate de usar http o https aquí
+  private apiUrl = 'https://api.appultrasound.cl'; // Asegúrate de usar http o https aquí
 
   constructor(private http: HttpClient) { }
 
@@ -14,5 +14,13 @@ export class ApiLoginService {
     const requestBody = { nombreUsuario, password };
 
     return this.http.post<any>(`${this.apiUrl}/usuarios/obtenerUsuario`, requestBody);
+  }
+
+  getUsuarios():Observable<any>{
+    return this.http.get<any>(`${this.apiUrl}/usuarios/`);
+  }
+
+  insertUser(user:any):Observable<any>{
+    return this.http.post(this.apiUrl+'/addUsuario',user);
   }
 }

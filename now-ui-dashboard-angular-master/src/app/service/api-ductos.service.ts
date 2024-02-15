@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ApiDuctosService {
 
-  private api = 'http://localhost:8085/ductos';
+  private api = 'https://api.appultrasound.cl/ductos';
   constructor(
     private http : HttpClient,
   ) { }

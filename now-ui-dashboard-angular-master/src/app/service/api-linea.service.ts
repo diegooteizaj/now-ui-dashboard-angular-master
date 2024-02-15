@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ApiLineaService {
 
-  private api = 'http://localhost:8085/linea';
+  private api = 'https://api.appultrasound.cl/linea';
   constructor(
     private http : HttpClient,
   ) { }
